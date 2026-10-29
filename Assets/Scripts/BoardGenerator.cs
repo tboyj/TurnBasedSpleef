@@ -6,8 +6,8 @@ public class BoardGenerator : MonoBehaviour
     public int rows = 4;
     [Tooltip("Number of tiles in each row")]
     public int rowLength = 4;
-    float xOffset;
-    float yOffset;
+    public float xOffset;
+    public float yOffset;
     private GameObject row;
     private GameObject tile;
     [Tooltip("Starting positions for players")]
@@ -30,18 +30,17 @@ public class BoardGenerator : MonoBehaviour
         tile = row.transform.GetChild(0).gameObject;
         for (int i = 0; i < rows; i++) {
             GameObject newRow = Instantiate(row, this.transform);
-            newRow.transform.position = new Vector3(-xOffset, yOffset-i, 0);
+            newRow.transform.localPosition = new Vector3(0, yOffset-i, 0);
             Debug.Log("Row " + i + " created");
             tile=newRow.transform.GetChild(0).gameObject;
             for (int j = 0; j < rowLength; j++) {
                 GameObject newTile = Instantiate(tile.gameObject, newRow.transform);
-                newTile.transform.position = new Vector3(j-xOffset, i-yOffset, 0);
+                newTile.transform.localPosition = new Vector3(j-xOffset, 0, 0);
                 Debug.Log("Tile " + i + "."+ j + " created");
             }
             GameObject.Destroy(tile);
         }
         GameObject.Destroy(row);
-
     }
 
     // Update is called once per frame
