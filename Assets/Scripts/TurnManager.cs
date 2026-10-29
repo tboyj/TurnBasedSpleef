@@ -41,6 +41,7 @@ public class TurnManager : MonoBehaviour
         if (Mathf.Abs(targetPos.x) <= boardGenerator.xOffset && Mathf.Abs(targetPos.y) <= boardGenerator.yOffset)
         {
             currentPlayer.transform.position = targetPos;
+            Debug.Log("Player " + playerTurn + ", Move " + (MovesPerTurn+1-movesLeft));
             --movesLeft;
         }
     }

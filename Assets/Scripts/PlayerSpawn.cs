@@ -6,6 +6,7 @@ public class PlayerSpawn : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public List<GameObject> PlayerList = new List<GameObject>();
     public const int TotalPlayers = 4;
+    public Color[] playerColors = {Color.blue, Color.red, Color.green, Color.orange};
     private GameObject p;
     private BoardGenerator boardGenerator;
     void Awake()
@@ -22,6 +23,7 @@ public class PlayerSpawn : MonoBehaviour
                 continue;
             }
             GameObject player = Instantiate(p, boardGenerator.playerStartPositions[i], Quaternion.identity);
+            player.GetComponent<SpriteRenderer>().color = playerColors[i];
             player.name = "Player" + (i + 1);
             PlayerList.Add(player);
         }
